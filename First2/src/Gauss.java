@@ -31,13 +31,13 @@ public class Gauss {
 
 
     public void gausss(){
-        searchMainLine();
-        createMatrixM();
-        matrixNull();
-        printMatrixAB(matrixA, matrixB);
-        if (count < matrixA.length) {
-            gausss();
+        if (count < matrixA.length){
+            searchMainLine();
+            createMatrixM();
+            matrixNull();
+            printMatrixAB(matrixA, matrixB);
             count++;
+            gausss();
         }
     }
 
@@ -49,8 +49,8 @@ public class Gauss {
         double[] helpMat;
         for (int i = count; i < matrixA.length; i++) {
             for (int j = 0; j < matrixA[i].length; j++) {
-                if (matrixA[i][j] > max){
-                    max = matrixA[i][j];
+                if (Math.abs(matrixA[i][j]) > max){
+                    max = Math.abs(matrixA[i][j]);
                     indexLine = i;
                     indexColm = j;
                 }
@@ -78,12 +78,15 @@ public class Gauss {
     }
 
     public void matrixNull(){
+        System.out.println("matrixNull");
         for (int i = count+1; i < matrixA.length; i++) {
             for (int j = 0; j < matrixA[i].length; j++) {
                 matrixA[i][j] -= matrixM[i] * matrixA[headLine][j];
                 matrixB[i][0] -= matrixM[i] * matrixA[headLine][0];
+                System.out.printf("\nmatrixB[%d][0] -= matrixM[%d] * matrixA[%d][0]", i, i, headLine);
             }
         }
+        System.out.println();
     }
 
     public void printMatrixAB(double[][] arrayA, double[][] arrayB){
