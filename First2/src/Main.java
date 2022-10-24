@@ -1,77 +1,86 @@
 public class Main {
-    protected static double a = 1.57895;
-    protected static double b = 7.89474;
-    public static double[][] arA = {{3,2,-5},{3.8,0.2,0},{0,a,0}};
-    public  static double[][] arB = {{-1}, {12.4}, {b}};
-    public static Gauss gauss;
-
+    private static double[] test = {1.25779, -0.82194, 0.24077, 0.75591, 0.88328};
+    private double[] myAnswer;
     public static void main(String[] args) {
+        Gauss gauss = new Gauss();
+//        gauss.gauss();
+//        System.out.print("\u03B4 = ");
+//        pohubka(gauss.resultMat, test);
+//
+//        Matrix matrix = new Matrix();
+//        System.out.println("Test 0.14505 = " + val(0.14505));
+//        System.out.println("Test 1.34504 = " + val(1.34504));
+//        System.out.println("Test 1.30003 = " + val(1.30003));
+//        System.out.println("Test 123.506 = " + val(123.506));
+//        System.out.println("Test 123.504 = " + val(123.504));
+//        System.out.println("Test 123456789 = " + val(123456789));
+         т
 
-//        gauss.printMatrixAB(gauss.matrixA, gauss.matrixB);
-//        gauss.gausss();
-//        int[] num = {1,2,3,4,5,6,7,8,9};
-//        for (int i = 0; i < num.length; i++) {
-//            if (num[i] == 4){
-//                continue;
-//            }
-//            System.out.print(num[i]+ " ");
-//        }
-        gauss = new Gauss();
-        gauss.gausss();
-//        System.out.println(gauss.significantNumbers("123"));
-//        gauss.printMatrixAB(gauss.matrixA, gauss.matrixB);
-//        System.out.println("Start matrix");
-//        gauss.printMatrixAB(arA, arB);
-//        System.out.println("Result");
-//        test();
-//        System.out.println();
-//        gauss.printMatrixAB(arA, arB);
-//        System.out.println();
-//        gauss.printMatrix(arB);
 
 
     }
+    /*
+    * 1.00004 = 000001
+    * 1.00005 = 1.0000
+    * 1.34567 = 1.3456
+    * 1.34507 = 1.2345
+    * 1.34505 = 1.3450
+    * 1.34504 =
+    * */
+    public static String val(double n){
+        char[] arrNum = Double.toString(n).toCharArray();
+        char[] arrNum2 = new char[6];
+        int count = 0, indexDot = -1;
 
-//    public static void test(){
-////        int size = arA.length;
-////        int count = 2;
-////        for (int i = 0; i < arA.length; i++) {
-////            if (arA[size - count][i] != 0) {
-////                for (int g = size - count; g >= 0; g--) {
-////                    arA[g][i] *= arB[size - count][0];
-////                    arB[g][0] -= arA[g][i];
-////                    arA[g][i] = 0;
-////                    count++;
-////                }
-////            }
-////            count = 0;
-////            gauss.printMatrixAB(arA, arB);
-////            System.out.println();
-////        }
-//        int indexJ = 0, indexI = 0;
-//        for (int j = arA.length - 1; j >= 0 ; j--) {
-//            for (int i = 0; i < arA.length; i++) {
-//                if (arA[j][i] != 0){
-//                    indexJ = j;
-//                    indexI = i;
-//                    System.out.printf("arA[%d][%d] != 0\n", j, i);
-//                    for (int k = j-1; k >= 0 ; k--) {
-//                        arB[j][0] /= arA[j][i];
-//                        System.out.printf("arB[%d][0] /= arA[%d][%d];\n", j, j, i);
-//                        arA[j][i] = 1;
-//                        System.out.printf("arA[%d][%d] = 1\n", j, i);
-//                        arA[k][i] *= arB[j][0];
-//                        System.out.printf("arA[%d][%d] *= arB[%d][0];\n", k, i, j);
-//                        arB[k][0] -= arA[k][i];
-//                        System.out.printf("arB[%d][0] -= arA[%d][%d];\n", k, k, i);
-//                        arA[k][i] = 0;
-//                        System.out.printf("arA[%d][%d] = 0\n", k, i);
-//                        gauss.printMatrixAB(arA, arB);
-//                    }
-//                }
-//            }
+        for (int i = 0; i < arrNum2.length; i++) {
+            if (arrNum[i] == '.'){
+                indexDot = i;
+                break;
+            }
+        }
+        if (indexDot != -1){
+            if (Integer.parseInt(String.valueOf(arrNum[5])) == 0 && Integer.parseInt(String.valueOf(arrNum[6])) >= 5){
+                for (int i = 0; i < arrNum2.length; i++) {
+                    arrNum2[i] = arrNum[i];
+                }
+                return new String(arrNum2);
+
+            }else if(Integer.parseInt(String.valueOf(arrNum[5])) == 0 && Integer.parseInt(String.valueOf(arrNum[6])) < 5){
+                for (int i = arrNum2.length - 1; i >= indexDot; i--) {
+                    System.out.println("arrNum[i] = " + arrNum[i]);
+                    if (arrNum[i] == '0'){
+                        count++;
+                    }
+                }
+                System.out.println("count = " + count);
+            }
+        }
+
+
+
+        return new String("не правильно");
+    }
+
+    public static void swap (char[] array, int i, int j){
+        char temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+
+//    public static void pohubka(String[][] myAnswer, double[] test){
+//        double result = 0;
+//        for (int k = 0; k < myAnswer.length; k++) {
+//            result += Math.pow( (Double.parseDouble(myAnswer[k][1]) - test[k]) ,2);
 //        }
-//        arB[indexJ][0] /= arA[indexJ][indexI];
-//        arA[indexJ][indexI] = 1;
+//        result /= myAnswer.length;
+//        if (result == 0){
+//            System.out.print("0");
+//        }else if (result == Math.pow(10, -4)){
+//            System.out.print("Math.pow(10, -4)");
+//        }else if (result == Math.pow(10, -6)){
+//            System.out.print("Math.pow(10, -6)");
+//        }else{
+//            System.out.print(result);
+//        }
 //    }
 }
