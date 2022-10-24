@@ -13,7 +13,7 @@ public class Gauss {
 
     public double[][] nevazka;
 
-    private final int significantNum = 6;
+
     public Matrix matrixStart;
     public Matrix matrixStart1;
     public Print print;
@@ -21,7 +21,7 @@ public class Gauss {
     public Gauss(){
         matrixStart = new Matrix();
         matrixStart1 = new Matrix();
-        print = new Print(significantNum);
+        print = new Print();
         startMatrixA = matrixStart.getStartMatrixA();
         startMatrixB = matrixStart.getStartMatrixB();
         matrixA = matrixStart1.getStartMatrixA();
@@ -52,8 +52,8 @@ public class Gauss {
             print.printMatrixAB(matrixA, matrixB);
             print.setResultMat(matrixA, matrixB, resultMat, 'x');
             print.printVector(resultMat);
-//            System.out.println("NEVAZKA");
-//            nevazka();
+            System.out.println("NEVAZKA");
+            nevazka();
         }
     }
 
@@ -118,14 +118,14 @@ public class Gauss {
         matrixA[indexJ][indexI] = 1;
     }
 
-//    public void nevazka(){
-//        double[][] nevazkaMatA = new double[startMatrixA.length][startMatrixA.length];
-//        for (int i = 0; i < nevazkaMatA.length; i++) {
-//            for (int j = 0; j < nevazkaMatA[i].length; j++) {
-//                nevazka[i][0] += startMatrixA[i][j] * Double.parseDouble(resultMat[j][1]);
-//            }
-//            nevazka[i][0] = startMatrixB[i][0] - nevazka[i][0];
-//        }
-//        print.printMatrix(nevazka);
-//    }
+    public void nevazka(){
+        double[][] nevazkaMatA = new double[startMatrixA.length][startMatrixA.length];
+        for (int i = 0; i < nevazkaMatA.length; i++) {
+            for (int j = 0; j < nevazkaMatA[i].length; j++) {
+                nevazka[i][0] += startMatrixA[i][j] * Double.parseDouble(resultMat[j][1]);
+            }
+            nevazka[i][0] = startMatrixB[i][0] - nevazka[i][0];
+        }
+        print.printMatrix(nevazka);
+    }
 }
